@@ -1,0 +1,75 @@
+$avatar-size: 60px;
+
+$overlay-color: rgba(122, 161, 178, .2);
+
+$border-width: 1px;
+$border-bold-width: 3px;
+$border-color: rgb(155, 160, 163);
+$border-active-color: rgb(122, 161, 178);
+
+@mixin avatar-shape($border) {
+  box-sizing: border-box;
+  position: absolute;
+  top: $border;
+  left: $border;
+  height: $avatar-size - 2*$border;
+  width: $avatar-size - 2*$border;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+@keyframes Rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.avatar {
+  position: relative;
+  height: $avatar-size;
+  width: $avatar-size;
+
+  &__image {
+    @include avatar-shape($border-bold-width);
+  }
+
+  &__border {
+    @include avatar-shape($border-bold-width - $border-width);
+    &:hover {
+      border: $border-width solid $border-color;
+    }
+
+    &--bold:hover {
+      border: $border-bold-width solid $border-color;
+
+      &:after {
+        content: '';
+        @include avatar-shape($border-bold-width);
+        top: 0;
+        left: 0;
+        background-color: $overlay-color;
+      }
+    }
+
+    &:active,
+    &--current,
+    &--current:hover {
+      border: $border-bold-width solid $border-color;
+      border-color: $border-active-color;
+    }
+
+    &--loading,
+    &--loading:hover {
+      border: $border-bold-width solid $border-color;
+      border-color: $border-active-color;
+      border-right-color: transparent;
+      animation-name: Rotate;
+      animation-duration: 1.5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+}
