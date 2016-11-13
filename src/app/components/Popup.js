@@ -15,13 +15,22 @@ export default class Popup extends Component {
     };
 
     this.handleToogle = this.handleToogle.bind(this);
+    this.handleHide = this.handleHide.bind(this);
+  }
+
+  togglState(value) {
+    this.setState({
+      opened: value === false ? false : !this.state.opened,
+      popupClass: this.state.popupClass === CSS_CLASS ? `${this.state.popupClass} ${CSS_CLASS_TOUCHED}` : this.state.popupClass
+    });
   }
 
   handleToogle() {
-    this.setState({
-      opened: !this.state.opened,
-      popupClass: this.state.popupClass === CSS_CLASS ? `${this.state.popupClass} ${CSS_CLASS_TOUCHED}` : this.state.popupClass
-    });
+    this.togglState();
+  }
+
+  handleHide() {
+    this.togglState(false);
   }
 
   render() {
@@ -33,6 +42,7 @@ export default class Popup extends Component {
 
     return (
       <div className="popup__container">
+        <div className="popup__backdrop" onClick={this.handleHide}></div>
         <div className="popup__refElement" onClick={this.handleToogle}>
           {this.props.triggerElement}
         </div>
