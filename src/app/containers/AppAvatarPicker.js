@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Avatar from '../components/Avatar';
 import Popup from '../components/Popup';
+import AvatarList from '../components/AvatarList';
 
 export default class AppAvatarPicker extends Component {
   render() {
@@ -11,10 +12,7 @@ export default class AppAvatarPicker extends Component {
     return (
       <div style={divStyle}>
         <Popup triggerElement={<Avatar/>}>
-          <Avatar/>
-          <Avatar bold/>
-          <Avatar loading/>
-          <Avatar current/>
+          <AvatarList/>
         </Popup>
       </div>
     );
