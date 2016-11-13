@@ -31,6 +31,7 @@ $border-active-color: rgb(122, 161, 178);
   position: relative;
   height: $avatar-size;
   width: $avatar-size;
+  float: left;
 
   &__image {
     @include avatar-shape($border-bold-width);

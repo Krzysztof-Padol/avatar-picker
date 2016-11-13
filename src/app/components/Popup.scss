@@ -1,0 +1,106 @@
+$popup-bg-color: rgb(44, 48, 51);
+$width: 280px;
+$padding: 14px;
+$shadow-color: rgb(102, 102, 102);
+$arrow-size: 8px;
+$border-radius: 2px;
+
+@keyframes bounceIn{
+  0%{
+    opacity: 0;
+    transform: scale(0.3) translate3d(-80%, 0, 0);
+  }
+  50%{
+    opacity: 0.9;
+    transform: scale(1.1) translate3d(-45%, 0, 0);
+  }
+  80%{
+    opacity: 1;
+    transform: scale(0.89) translate3d(-55%, 0, 0);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1) translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes fadeOut{
+  0%{
+    opacity: 1;
+    transform: scale(1) translate3d(-50%, 0, 0);
+  }
+  100%{
+    opacity: 0;
+    transform: scale(0) translate3d(-150%, 0, 0);
+  }
+}
+
+@mixin clearFix() {
+  &:after{
+   visibility: hidden;
+   display: block;
+   content: " ";
+   clear: both;
+   height: 0;
+ }
+}
+
+@mixin referenceContainer() {
+  display: inline-block;
+  position: relative;
+}
+
+@mixin popupAnimation($name, $time) {
+  animation-name: $name;
+  animation-duration: $time;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.popup {
+  position: absolute;
+  left: 50%;
+  background: $popup-bg-color;
+  color: #fff;
+  opacity: 0;
+  min-width: $width;
+  min-height: 120px;
+  margin-top: 5px;
+  padding: $padding;
+  border-radius: $border-radius;
+  box-shadow: 0px 0px 10px 2px $shadow-color;
+
+  &__container {
+    @include referenceContainer();
+  }
+
+  &__refElement {
+    @include referenceContainer();
+    @include clearFix();
+  }
+
+  &--touched {
+    @include popupAnimation('fadeOut', 150ms);
+  }
+
+  &--opened {
+    display: block;
+    opacity: 0;
+    @include popupAnimation('bounceIn', 350ms);
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateY(-100%) translateX(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 $arrow-size $arrow-size $arrow-size;
+    border-color: transparent transparent $popup-bg-color transparent;
+    line-height: 0px;
+    _border-color: #000000 #000000 $popup-bg-color #000000;
+    _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+  }
+}
