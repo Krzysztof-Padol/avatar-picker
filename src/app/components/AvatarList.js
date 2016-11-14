@@ -1,35 +1,11 @@
 import React, {PropTypes, Component} from 'react';
+import {connect} from 'react-redux';
 import Avatar from './Avatar';
 import './AvatarList.scss';
 
-export default class AvatarList extends Component {
+class AvatarList extends Component {
   render() {
-    const avatars = [{
-      src: 'app/components/assets/avatar1.png',
-      label: 'Avatar 1',
-      id: 1
-    }, {
-      src: 'app/components/assets/avatar2.png',
-      label: 'Avatar 2',
-      id: 2
-    }, {
-      src: 'app/components/assets/avatar3.png',
-      label: 'Avatar 3',
-      id: 3
-    }, {
-      src: 'app/components/assets/avatar4.png',
-      label: 'Avatar 4',
-      id: 4
-    }, {
-      src: 'app/components/assets/avatar5.png',
-      label: 'Avatar 5',
-      id: 5
-    }, {
-      src: 'app/components/assets/avatar6.png',
-      label: 'Avatar 6',
-      id: 6
-    }];
-
+    const {avatars} = this.props;
     return (
       <ul className="avatar-list">
         {avatars.map(avatar =>
@@ -42,10 +18,20 @@ export default class AvatarList extends Component {
   }
 }
 
-AvatarList.defaultProps = {
-  text: 'My brand new component!'
+AvatarList.propTypes = {
+  avatars: PropTypes.array.isRequired,
+  avatarPickerState: PropTypes.object.isRequired,
+  changeAvatar: PropTypes.func
 };
 
-AvatarList.propTypes = {
-  text: PropTypes.string
-};
+function mapStateToProps(state) {
+  return {
+    avatars: state.avatars,
+    avatarPickerState: state.avatarPickerState
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(AvatarList);
