@@ -33,7 +33,7 @@ AvatarContainer.propTypes = {
 
 const mapStateToProps = state => ({
   currentAvatar: state.avatars.find(avatar => avatar.id === state.avatarPickerState.currentAvatarId),
-  opened: state.avatarPickerState.popupOpen
+  opened: state.popupState.popupOpen
 });
 
 const mapDispatchToProps = dispatch => ({
