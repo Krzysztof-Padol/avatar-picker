@@ -1,16 +1,25 @@
 import React, {PropTypes, Component} from 'react';
 import {connect} from 'react-redux';
+import * as AvatarActions from '../actions/index';
 import Avatar from './Avatar';
 import './AvatarList.scss';
 
 class AvatarList extends Component {
   render() {
-    const {avatars} = this.props;
+    const {avatars, avatarPickerState, changeAvatar} = this.props;
+
     return (
       <ul className="avatar-list">
         {avatars.map(avatar =>
           <li key={avatar.id}>
-            <Avatar bold imagePath={avatar.src}/>
+            <Avatar
+              bold
+              avatarId={avatar.id}
+              current={avatar.id === avatarPickerState.currentAvatarId}
+              loading={avatar.id === avatarPickerState.requestPendingId}
+              avatarOnClick={changeAvatar}
+              imagePath={avatar.src}
+              />
           </li>
         )}
       </ul>
@@ -31,7 +40,13 @@ function mapStateToProps(state) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    changeAvatar: AvatarActions.changeAvatar(dispatch)
+  };
+}
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(AvatarList);

@@ -3,9 +3,23 @@ import classnames from 'classnames';
 import './Avatar.scss';
 
 export default class Avatar extends Component {
+  constructor() {
+    super();
+
+    this.handleOnClick = this.handleOnClick.bind(this);
+  }
+
+  handleOnClick() {
+    const {avatarId, avatarOnClick} = this.props;
+
+    if (avatarOnClick) {
+      avatarOnClick(avatarId);
+    }
+  }
+
   render() {
     return (
-      <div className="avatar">
+      <div className="avatar" onClick={this.handleOnClick}>
         <img className="avatar__image" src={this.props.imagePath}/>
         <div
           className={classnames({
@@ -28,8 +42,10 @@ Avatar.defaultProps = {
 };
 
 Avatar.propTypes = {
+  avatarId: PropTypes.number,
   imagePath: PropTypes.string.isRequired,
   loading: PropTypes.bool,
   current: PropTypes.bool,
-  bold: PropTypes.bool
+  bold: PropTypes.bool,
+  avatarOnClick: PropTypes.func
 };

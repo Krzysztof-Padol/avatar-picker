@@ -1,29 +1,32 @@
 import React, {PropTypes, Component} from 'react';
-import {Provider} from 'react-redux';
-import configureStore from './../store/configureStore';
+import {connect} from 'react-redux';
 import Avatar from './Avatar';
 import Popup from './Popup';
 import AvatarList from './AvatarList';
 
-export default class AvatarPicker extends Component {
-  constructor(props) {
-    super();
-    this.store = configureStore({
-      avatars: props.elements
-    });
-  }
-
+class AvatarPicker extends Component {
   render() {
+    const {currentAvatar} = this.props;
+
     return (
-      <Provider store={this.store}>
-        <Popup triggerElement={<Avatar/>}>
-          <AvatarList/>
-        </Popup>
-      </Provider>
+      <Popup triggerElement={<Avatar imagePath={currentAvatar.src}/>}>
+        <AvatarList/>
+      </Popup>
     );
   }
 }
 
 AvatarPicker.propTypes = {
-  elements: PropTypes.array
+  currentAvatar: PropTypes.object.isRequired
 };
+
+function mapStateToProps(state) {
+  return {
+    currentAvatar: state.avatars.find(avatar => avatar.id === state.avatarPickerState.currentAvatarId)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(AvatarPicker);

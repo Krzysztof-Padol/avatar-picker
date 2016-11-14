@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Provider} from 'react-redux';
+import configureStore from './../store/configureStore';
 import AvatarPicker from '../components/AvatarPicker';
 
 const elementList = [{
@@ -28,6 +30,14 @@ const elementList = [{
 }];
 
 export default class AppAvatarPicker extends Component {
+  constructor() {
+    super();
+
+    this.store = configureStore({
+      avatars: elementList
+    });
+  }
+
   render() {
     const divStyle = {
       margin: '100px 150px'
@@ -35,7 +45,9 @@ export default class AppAvatarPicker extends Component {
 
     return (
       <div style={divStyle}>
-        <AvatarPicker elements={elementList}/>
+        <Provider store={this.store}>
+          <AvatarPicker elements={elementList}/>
+        </Provider>
       </div>
     );
   }

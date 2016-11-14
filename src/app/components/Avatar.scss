@@ -6,6 +6,7 @@ $border-width: 1px;
 $border-bold-width: 3px;
 $border-color: rgb(155, 160, 163);
 $border-active-color: rgb(122, 161, 178);
+$border-loading-second: rgb(44, 48, 51);
 
 @mixin avatar-shape($border) {
   box-sizing: border-box;
@@ -66,9 +67,9 @@ $border-active-color: rgb(122, 161, 178);
     &--loading:hover {
       border: $border-bold-width solid $border-color;
       border-color: $border-active-color;
-      border-right-color: transparent;
+      border-right-color: $border-loading-second;
       animation-name: Rotate;
-      animation-duration: 1.5s;
+      animation-duration: 1s;
       animation-iteration-count: infinite;
       animation-timing-function: linear;
     }

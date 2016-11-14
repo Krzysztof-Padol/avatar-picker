@@ -88,7 +88,7 @@ $border-radius: 2px;
   }
 
   &--touched {
-    @include popupAnimation('fadeOut', 150ms);
+    @include popupAnimation('fadeOut', 90ms);
   }
 
   &--opened {
