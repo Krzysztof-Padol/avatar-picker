@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import configureStore from './../store/configureStore';
-import AvatarPicker from '../components/AvatarPicker';
+import AvatarContainer from './AvatarContainer';
 
 const elementList = [{
   src: 'app/components/assets/avatar1.png',
@@ -29,7 +29,7 @@ const elementList = [{
   id: 6
 }];
 
-export default class AppAvatarPicker extends Component {
+export default class App extends Component {
   constructor() {
     super();
 
@@ -46,7 +46,7 @@ export default class AppAvatarPicker extends Component {
     return (
       <div style={divStyle}>
         <Provider store={this.store}>
-          <AvatarPicker elements={elementList}/>
+          <AvatarContainer/>
         </Provider>
       </div>
     );

@@ -16,6 +16,15 @@ module.exports = {
         ]
       },
       {
+        test: /\.(css|scss)$/,
+        loaders: [
+          'style',
+          'css',
+          'sass',
+          'postcss'
+        ]
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loaders: [
@@ -29,6 +38,8 @@ module.exports = {
   devtool: 'source-map',
   externals: {
     'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true
+    'react/lib/ReactContext': true,
+    'cheerio': 'window',
+    'react/addons': true
   }
 };

@@ -2,11 +2,11 @@ import 'babel-polyfill';
 
 import React from 'react';
 import {render} from 'react-dom';
-import AppAvatarPicker from './app/containers/AppAvatarPicker';
+import App from './app/containers/App';
 
 import './index.scss';
 
 render(
-  <AppAvatarPicker/>,
+  <App/>,
   document.getElementById('root')
 );

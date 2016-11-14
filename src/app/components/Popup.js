@@ -1,7 +1,4 @@
 import React, {PropTypes, Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import * as AvatarActions from '../actions/index';
 import {ENTER_KEY} from './../constants/KeyTypes';
 import './Popup.scss';
 
@@ -9,7 +6,7 @@ const CSS_CLASS = 'popup';
 const CSS_CLASS_OPENED = ' popup--opened';
 const CSS_CLASS_TOUCHED = 'popup--touched';
 
-class Popup extends Component {
+export default class Popup extends Component {
   constructor() {
     super();
 
@@ -29,7 +26,7 @@ class Popup extends Component {
   }
 
   togglState(value) {
-    const {openPopup, closePopup} = this.props.actions;
+    const {openPopup, closePopup} = this.props;
 
     if (value === false || this.props.opened) {
       closePopup();
@@ -73,29 +70,13 @@ class Popup extends Component {
 }
 
 Popup.defaultProps = {
-  children: 'My brand new component!'
+  children: 'Popup content'
 };
 
 Popup.propTypes = {
   opened: PropTypes.bool.isRequired,
-  actions: PropTypes.object.isRequired,
-  children: PropTypes.node,
-  triggerElement: PropTypes.node.isRequired
+  openPopup: PropTypes.func.isRequired,
+  closePopup: PropTypes.func.isRequired,
+  triggerElement: PropTypes.node.isRequired,
+  children: PropTypes.node
 };
-
-function mapStateToProps(state) {
-  return {
-    opened: state.avatarPickerState.popupOpen
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(AvatarActions, dispatch)
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Popup);
