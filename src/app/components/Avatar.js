@@ -1,12 +1,20 @@
 import React, {PropTypes, Component} from 'react';
 import classnames from 'classnames';
 import './Avatar.scss';
+import {ENTER_KEY} from './../constants/KeyTypes';
 
 export default class Avatar extends Component {
   constructor() {
     super();
 
     this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  handleKeyPress(e) {
+    if (e.key === ENTER_KEY) {
+      this.handleOnClick();
+    }
   }
 
   handleOnClick() {
@@ -19,9 +27,10 @@ export default class Avatar extends Component {
 
   render() {
     return (
-      <div className="avatar" onClick={this.handleOnClick}>
+      <div className="avatar" onClick={this.handleOnClick} onKeyPress={this.handleKeyPress}>
         <img className="avatar__image" src={this.props.imagePath}/>
         <div
+          tabIndex="0"
           className={classnames({
             'avatar__border--loading': this.props.loading,
             'avatar__border--current': this.props.current,

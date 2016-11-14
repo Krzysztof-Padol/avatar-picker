@@ -8,6 +8,8 @@ $border-color: rgb(155, 160, 163);
 $border-active-color: rgb(122, 161, 178);
 $border-loading-second: rgb(44, 48, 51);
 
+$outline-color: rgb(82, 121, 220);
+
 @mixin avatar-shape($border) {
   box-sizing: border-box;
   position: absolute;
@@ -40,11 +42,17 @@ $border-loading-second: rgb(44, 48, 51);
 
   &__border {
     @include avatar-shape($border-bold-width - $border-width);
-    &:hover {
+    &:focus {
+      outline: none;
+    }
+
+    &:hover,
+    &:focus {
       border: $border-width solid $border-color;
     }
 
-    &--bold:hover {
+    &--bold:hover,
+    &--bold:focus {
       border: $border-bold-width solid $border-color;
 
       &:after {
@@ -58,13 +66,15 @@ $border-loading-second: rgb(44, 48, 51);
 
     &:active,
     &--current,
-    &--current:hover {
+    &--current:hover,
+    &--current:focus {
       border: $border-bold-width solid $border-color;
       border-color: $border-active-color;
     }
 
     &--loading,
-    &--loading:hover {
+    &--loading:hover,
+    &--loading:focus {
       border: $border-bold-width solid $border-color;
       border-color: $border-active-color;
       border-right-color: $border-loading-second;

@@ -1,4 +1,5 @@
 import React, {PropTypes, Component} from 'react';
+import {ENTER_KEY} from './../constants/KeyTypes';
 import './Popup.scss';
 
 const CSS_CLASS = 'popup';
@@ -16,6 +17,13 @@ export default class Popup extends Component {
 
     this.handleToogle = this.handleToogle.bind(this);
     this.handleHide = this.handleHide.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  handleKeyPress(e) {
+    if (e.key === ENTER_KEY) {
+      this.togglState();
+    }
   }
 
   togglState(value) {
@@ -43,7 +51,7 @@ export default class Popup extends Component {
     return (
       <div className="popup__container">
         <div className="popup__backdrop" onClick={this.handleHide}></div>
-        <div className="popup__refElement" onClick={this.handleToogle}>
+        <div className="popup__refElement" onClick={this.handleToogle} onKeyPress={this.handleKeyPress}>
           {this.props.triggerElement}
         </div>
         <div className={popupClass}>
