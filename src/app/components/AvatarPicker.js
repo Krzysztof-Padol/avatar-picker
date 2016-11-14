@@ -6,10 +6,10 @@ import AvatarList from './AvatarList';
 
 class AvatarPicker extends Component {
   render() {
-    const {currentAvatar} = this.props;
+    const {opened, currentAvatar} = this.props;
 
     return (
-      <Popup triggerElement={<Avatar imagePath={currentAvatar.src}/>}>
+      <Popup triggerElement={<Avatar active={opened} imagePath={currentAvatar.src}/>}>
         <AvatarList/>
       </Popup>
     );
@@ -17,12 +17,14 @@ class AvatarPicker extends Component {
 }
 
 AvatarPicker.propTypes = {
-  currentAvatar: PropTypes.object.isRequired
+  currentAvatar: PropTypes.object.isRequired,
+  opened: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    currentAvatar: state.avatars.find(avatar => avatar.id === state.avatarPickerState.currentAvatarId)
+    currentAvatar: state.avatars.find(avatar => avatar.id === state.avatarPickerState.currentAvatarId),
+    opened: state.avatarPickerState.popupOpen
   };
 }
 

@@ -46,6 +46,7 @@ $outline-color: rgb(82, 121, 220);
       outline: none;
     }
 
+    &--active,
     &:hover,
     &:focus {
       border: $border-width solid $border-color;

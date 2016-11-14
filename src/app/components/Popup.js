@@ -1,4 +1,7 @@
 import React, {PropTypes, Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as AvatarActions from '../actions/index';
 import {ENTER_KEY} from './../constants/KeyTypes';
 import './Popup.scss';
 
@@ -6,12 +9,11 @@ const CSS_CLASS = 'popup';
 const CSS_CLASS_OPENED = ' popup--opened';
 const CSS_CLASS_TOUCHED = 'popup--touched';
 
-export default class Popup extends Component {
+class Popup extends Component {
   constructor() {
     super();
 
     this.state = {
-      opened: false,
       popupClass: CSS_CLASS
     };
 
@@ -27,8 +29,15 @@ export default class Popup extends Component {
   }
 
   togglState(value) {
+    const {openPopup, closePopup} = this.props.actions;
+
+    if (value === false || this.props.opened) {
+      closePopup();
+    } else {
+      openPopup();
+    }
+
     this.setState({
-      opened: value === false ? false : !this.state.opened,
       popupClass: this.state.popupClass === CSS_CLASS ? `${this.state.popupClass} ${CSS_CLASS_TOUCHED}` : this.state.popupClass
     });
   }
@@ -44,7 +53,7 @@ export default class Popup extends Component {
   render() {
     let popupClass = this.state.popupClass;
 
-    if (this.state.opened) {
+    if (this.props.opened) {
       popupClass += CSS_CLASS_OPENED;
     }
 
@@ -68,6 +77,25 @@ Popup.defaultProps = {
 };
 
 Popup.propTypes = {
+  opened: PropTypes.bool.isRequired,
+  actions: PropTypes.object.isRequired,
   children: PropTypes.node,
   triggerElement: PropTypes.node.isRequired
 };
+
+function mapStateToProps(state) {
+  return {
+    opened: state.avatarPickerState.popupOpen
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(AvatarActions, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Popup);

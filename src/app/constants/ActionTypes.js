@@ -1,2 +1,4 @@
 export const PENDING_REQUEST = 'PENDING_REQUEST';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
+export const OPEN_POPUP = 'OPEN_POPUP';
+export const CLOSE_POPUP = 'CLOSE_POPUP';

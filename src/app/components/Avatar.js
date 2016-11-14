@@ -32,6 +32,7 @@ export default class Avatar extends Component {
         <div
           tabIndex="0"
           className={classnames({
+            'avatar__border--active': this.props.active,
             'avatar__border--loading': this.props.loading,
             'avatar__border--current': this.props.current,
             'avatar__border--bold': this.props.bold,
@@ -55,6 +56,7 @@ Avatar.propTypes = {
   imagePath: PropTypes.string.isRequired,
   loading: PropTypes.bool,
   current: PropTypes.bool,
+  active: PropTypes.bool,
   bold: PropTypes.bool,
   avatarOnClick: PropTypes.func
 };
