@@ -1,11 +1,24 @@
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import {shallow} from 'enzyme';
 import AvatarListItem from './avatarListItem';
 
 describe('AvatarListItem component', () => {
-  it('should render default text', () => {
-    const avatarListItem = TestUtils.renderIntoDocument(<AvatarListItem/>);
-    const h2 = TestUtils.findRenderedDOMComponentWithTag(avatarListItem, 'h2');
-    expect(h2.textContent).toEqual('My brand new component!');
+  it('should contain li element', () => {
+    const component = shallow(
+      <AvatarListItem/>
+    );
+    expect(component.containsMatchingElement(
+      <li></li>
+    )).toEqual(true);
+  });
+
+  it('should render children in li', () => {
+    const exampleTxt = 'That is example text';
+    const component = shallow(
+      <AvatarListItem>{exampleTxt}</AvatarListItem>
+    );
+    expect(component.containsMatchingElement(
+      <li>{exampleTxt}</li>
+    )).toEqual(true);
   });
 });

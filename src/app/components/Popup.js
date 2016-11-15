@@ -2,9 +2,9 @@ import React, {PropTypes, Component} from 'react';
 import {ENTER_KEY} from './../constants/KeyTypes';
 import './Popup.scss';
 
-const CSS_CLASS = 'popup';
-const CSS_CLASS_OPENED = ' popup--opened';
-const CSS_CLASS_TOUCHED = 'popup--touched';
+export const CSS_CLASS = 'popup';
+export const CSS_CLASS_OPENED = ' popup--opened';
+export const CSS_CLASS_TOUCHED = 'popup--touched';
 
 export default class Popup extends Component {
   constructor() {
@@ -70,6 +70,7 @@ export default class Popup extends Component {
 }
 
 Popup.defaultProps = {
+  triggerElement: 'Click here!',
   children: 'Popup content'
 };
 
@@ -77,6 +78,6 @@ Popup.propTypes = {
   opened: PropTypes.bool.isRequired,
   openPopup: PropTypes.func.isRequired,
   closePopup: PropTypes.func.isRequired,
-  triggerElement: PropTypes.node.isRequired,
+  triggerElement: PropTypes.node,
   children: PropTypes.node
 };

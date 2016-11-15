@@ -1,11 +1,20 @@
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import {shallow} from 'enzyme';
 import AvatarList from './avatarList';
 
 describe('AvatarList component', () => {
-  it('should render default text', () => {
-    const avatarList = TestUtils.renderIntoDocument(<AvatarList/>);
-    const h2 = TestUtils.findRenderedDOMComponentWithTag(avatarList, 'h2');
-    expect(h2.textContent).toEqual('My brand new component!');
+  it('should have proper class name', () => {
+    const component = shallow(
+      <AvatarList/>
+    );
+    expect(component.hasClass('avatar-list')).toEqual(true);
+  });
+
+  it('should render children', () => {
+    const exampleTxt = 'That is example text';
+    const component = shallow(
+      <AvatarList>{exampleTxt}</AvatarList>
+    );
+    expect(component.contains(exampleTxt)).toEqual(true);
   });
 });
