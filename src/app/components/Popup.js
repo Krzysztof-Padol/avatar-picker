@@ -62,6 +62,7 @@ export default class Popup extends Component {
         </div>
         <div className={popupClass}>
           <div className="popup__arrow"></div>
+          <h2>{this.props.title}</h2>
           {this.props.children}
         </div>
       </div>
@@ -79,5 +80,6 @@ Popup.propTypes = {
   openPopup: PropTypes.func.isRequired,
   closePopup: PropTypes.func.isRequired,
   triggerElement: PropTypes.node,
-  children: PropTypes.node
+  children: PropTypes.node,
+  title: PropTypes.string
 };

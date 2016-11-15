@@ -5,6 +5,10 @@ $shadow-color: rgb(102, 102, 102);
 $arrow-size: 8px;
 $border-radius: 2px;
 
+$title-color: rgb(249, 249, 249);
+$title-margin: 14px;
+$title-size: 16px;
+
 @keyframes bounceIn{
   0%{
     opacity: 0;
@@ -69,6 +73,14 @@ $border-radius: 2px;
   padding: $padding;
   border-radius: $border-radius;
   box-shadow: 0px 0px 10px 2px $shadow-color;
+
+  h2 {
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: $title-margin auto;
+    color: $title-color;
+    font-size: $title-size;
+    text-align: center;
+  }
 
   &__backdrop {
     position: fixed;

@@ -8,6 +8,7 @@ import Popup from '../components/Popup';
 
 const AvatarContainer = ({actions, currentAvatar, opened}) => (
   <Popup
+    title="Choose your avatar"
     opened={opened}
     openPopup={actions.openPopup}
     closePopup={actions.closePopup}
