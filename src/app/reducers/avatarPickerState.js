@@ -1,6 +1,6 @@
 import {PENDING_REQUEST, REQUEST_SUCCESS} from '../constants/ActionTypes';
 
-const initialState = {
+export const initialState = {
   currentAvatarId: 1,
   requestPendingId: false
 };

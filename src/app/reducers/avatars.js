@@ -1,4 +1,4 @@
-const initialState = [{
+export const initialState = [{
   src: 'app/components/assets/avatar1.png',
   label: 'Avatar 1',
   id: 1

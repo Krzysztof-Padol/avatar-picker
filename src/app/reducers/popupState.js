@@ -1,6 +1,6 @@
 import {OPEN_POPUP, CLOSE_POPUP, REQUEST_SUCCESS} from '../constants/ActionTypes';
 
-const initialState = {
+export const initialState = {
   popupOpen: false
 };
 
